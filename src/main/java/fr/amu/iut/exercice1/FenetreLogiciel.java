@@ -50,7 +50,6 @@ public class FenetreLogiciel extends Application {
         Separator sep1 = new Separator(Orientation.HORIZONTAL);
         Separator sep2 = new Separator(Orientation.VERTICAL);
         vb.getChildren().addAll(lBoutons, b1, b2, b3);
-
         HBox hbLeft = new HBox();
         hbLeft.getChildren().addAll(vb, sep2);
         VBox.setMargin(vb, new Insets(10.0d));
@@ -61,7 +60,9 @@ public class FenetreLogiciel extends Application {
 
         VBox vbCenter = new VBox();
         Button btnSubmit = new Button("Submit");
+        btnSubmit.setStyle("-fx-background-color: #00ff00; -fx-text-fill: white;");
         Button btnCancel = new Button("Cancel");
+        btnCancel.setStyle("-fx-background-color: #ff0000; -fx-text-fill: white;");
         hbBoutons.getChildren().addAll(btnSubmit, btnCancel);
         vbCenter.getChildren().addAll(gP, hbBoutons);
         Label lName = new Label("Name :");
@@ -86,10 +87,9 @@ public class FenetreLogiciel extends Application {
         gP.setAlignment(Pos.CENTER);
         hbBoutons.setAlignment(Pos.CENTER);
         vb.setAlignment(Pos.CENTER);
-
-
         lBottom.setTextAlignment(TextAlignment.CENTER);
         vbBottom.setAlignment(Pos.CENTER);
+
         bp.setLeft(hbLeft);
         bp.setCenter(vbCenter);
         bp.setBottom(vbBottom);
