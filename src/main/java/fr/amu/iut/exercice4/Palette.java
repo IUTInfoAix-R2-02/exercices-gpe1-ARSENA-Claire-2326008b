@@ -32,16 +32,20 @@ public class Palette extends Application {
     // clic bouton vert ++
     private EventHandler<MouseEvent> buttonClickHandlerVert = actionEvent -> {
         label.setText("vert choisi " + nbVert++ + " fois");
+        panneau.setStyle("-fx-background-color: #5dd25d");
     };
 
     // clic bouton rouge ++
     private EventHandler<MouseEvent> buttonClickHandlerRouge = actionEvent -> {
         label.setText("rouge choisi " + nbRouge++ + " fois");
+        panneau.setStyle("-fx-background-color: #e01f1f");
+
     };
 
     // clic bouton bleu ++
     private EventHandler<MouseEvent> buttonClickHandlerBleu = actionEvent -> {
         label.setText("bleu choisi " + nbBleu++ + " fois");
+        panneau.setStyle("-fx-background-color: #2e69ff");
     };
 
     @Override
@@ -75,16 +79,6 @@ public class Palette extends Application {
         bleu.addEventHandler(MouseEvent.MOUSE_CLICKED, buttonClickHandlerBleu);
         hBbas.getChildren().add(bleu);
 
-        //milieu
-        if (nbRouge > nbBleu && nbRouge > nbVert) {
-            panneau.setStyle("-fx-background-color: #ff0000");
-        } else if (nbVert > nbBleu && nbVert > nbRouge) {
-            panneau.setStyle("-fx-background-color: #5dd25d");
-        } else if (nbBleu > nbRouge && nbBleu > nbVert) {
-            panneau.setStyle("-fx-background-color: #2e69ff");
-        }
-         else
-             panneau.setStyle("-fx-background-color: #ffffff");
 
         hBbas.setAlignment(Pos.CENTER);
         root.setTop(label);
