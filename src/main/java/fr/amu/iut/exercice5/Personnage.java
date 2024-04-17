@@ -6,7 +6,9 @@ import javafx.scene.shape.Circle;
 
 class Personnage extends Group {
     protected final static double LARGEUR_MOITIE_PERSONNAGE = 10;
+    protected final static double HAUTEUR_MOITIE_PERSONNAGE = 10;
     protected final static double LARGEUR_PERSONNAGE = LARGEUR_MOITIE_PERSONNAGE * 2;
+    private static final double HAUTEUR_PERSONNAGE = HAUTEUR_MOITIE_PERSONNAGE * 2;
     private final Circle corps;
     private String direction;
 
@@ -54,7 +56,12 @@ class Personnage extends Group {
         //  *   |   *
         //   *  |  *
         //    *****
-
+        if (getLayoutY() < hauteurJeu - HAUTEUR_PERSONNAGE) {
+            setLayoutY(getLayoutY() + HAUTEUR_PERSONNAGE);
+        }
+        if (!direction.equals("bas")) {
+            direction = "bas";
+        }
     }
 
     public void deplacerEnHaut() {
@@ -63,9 +70,13 @@ class Personnage extends Group {
         //  *   |   *
         //   *     *
         //    *****
-
+        if (getLayoutY() >= HAUTEUR_PERSONNAGE) {
+            setLayoutY(getLayoutY() - HAUTEUR_PERSONNAGE);
+        }
+        if (!direction.equals("haut")) {
+            direction = "haut";
+        }
     }
-
     boolean estEnCollision(Personnage autrePersonnage) {
         return getBoundsInParent().contains(autrePersonnage.getBoundsInParent())
                 || autrePersonnage.getBoundsInParent().contains(getBoundsInParent());

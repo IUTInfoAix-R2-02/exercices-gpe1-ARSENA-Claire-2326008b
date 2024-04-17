@@ -17,9 +17,9 @@ public class Fantome extends Personnage {
 
 
     public Fantome() {
-        super("droite", Color.BLUE, Color.BLUE);
+        super("droite", Color.PINK, Color.PINK);
         basCorps = new Rectangle(0, 10, 20, 10);
-        basCorps.setFill(Color.BLUE);
+        basCorps.setFill(Color.PINK);
 
         oeilGauche = new Circle(6, 6, 2, Color.WHITE);
         //regarde vers la droite
@@ -39,22 +39,23 @@ public class Fantome extends Personnage {
 
     @Override
     public void deplacerAGauche() {
-
-
-    }
+    super.deplacerAGauche();
+   }
 
     @Override
     public void deplacerADroite(double largeurJeu) {
+    super.deplacerADroite(largeurJeu);
 
     }
 
     @Override
     public void deplacerEnBas(double hauteurJeu) {
-
-    }
+    super.deplacerEnBas(hauteurJeu);
+     }
 
     @Override
     public void deplacerEnHaut() {
+    super.deplacerEnHaut();
 
     }
 
