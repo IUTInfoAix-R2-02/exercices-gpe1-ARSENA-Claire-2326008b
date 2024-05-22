@@ -39,12 +39,16 @@ public class Palette extends Application {
     private EventHandler<MouseEvent> buttonClickHandlerVert = actionEvent -> {
         texteDuHaut.setText("vert choisi " + nbVert++ + " fois");
         panneau.setStyle("-fx-background-color: #64b264");
+        texteDuBas.setText("le vert est une jolie couleur!!");
+        texteDuBas.setStyle("-fx-text-fill: #64b264;");
     };
 
     // clic bouton rouge ++
     private EventHandler<MouseEvent> buttonClickHandlerRouge = actionEvent -> {
         texteDuHaut.setText("rouge choisi " + nbRouge++ + " fois");
         panneau.setStyle("-fx-background-color: #b70000");
+        texteDuBas.setText("le rouge est une jolie couleur!!");
+        texteDuBas.setStyle("-fx-text-fill: #b70000;");
 
     };
 
@@ -52,6 +56,8 @@ public class Palette extends Application {
     private EventHandler<MouseEvent> buttonClickHandlerBleu = actionEvent -> {
         texteDuHaut.setText("bleu choisi " + nbBleu++ + " fois");
         panneau.setStyle("-fx-background-color: #5d81e5");
+        texteDuBas.setText("le bleu est une jolie couleur!!");
+        texteDuBas.setStyle("-fx-text-fill: #5d81e5;");
     };
 
     @Override
