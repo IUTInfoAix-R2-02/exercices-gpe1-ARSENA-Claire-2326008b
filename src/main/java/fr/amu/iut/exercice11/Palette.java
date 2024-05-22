@@ -1,11 +1,13 @@
-package fr.amu.iut.exercice1;
+package fr.amu.iut.exercice11;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -33,11 +35,29 @@ public class Palette extends Application {
 
     private Label texteDuBas;
 
+    // clic bouton vert ++
+    private EventHandler<MouseEvent> buttonClickHandlerVert = actionEvent -> {
+        texteDuHaut.setText("vert choisi " + nbVert++ + " fois");
+        panneau.setStyle("-fx-background-color: #64b264");
+    };
+
+    // clic bouton rouge ++
+    private EventHandler<MouseEvent> buttonClickHandlerRouge = actionEvent -> {
+        texteDuHaut.setText("rouge choisi " + nbRouge++ + " fois");
+        panneau.setStyle("-fx-background-color: #b70000");
+
+    };
+
+    // clic bouton bleu ++
+    private EventHandler<MouseEvent> buttonClickHandlerBleu = actionEvent -> {
+        texteDuHaut.setText("bleu choisi " + nbBleu++ + " fois");
+        panneau.setStyle("-fx-background-color: #5d81e5");
+    };
 
     @Override
     public void start(Stage primaryStage) {
         root = new BorderPane();
-
+        texteDuHaut = new Label();
         texteDuHaut = new Label();
         texteDuHaut.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         BorderPane.setAlignment(texteDuHaut, Pos.CENTER);
@@ -54,8 +74,16 @@ public class Palette extends Application {
         bas.getChildren().addAll(boutons, texteDuBas);
 
         vert = new Button("Vert");
+        vert.addEventHandler(MouseEvent.MOUSE_CLICKED, buttonClickHandlerVert);
+        bas.getChildren().add(vert);
+
         rouge = new Button("Rouge");
+        rouge.addEventHandler(MouseEvent.MOUSE_CLICKED, buttonClickHandlerRouge);
+        bas.getChildren().add(rouge);
+
         bleu = new Button("Bleu");
+        bleu.addEventHandler(MouseEvent.MOUSE_CLICKED, buttonClickHandlerBleu);
+        bas.getChildren().add(bleu);
 
         /* VOTRE CODE ICI */
 
