@@ -34,21 +34,25 @@ public class Palette extends Application {
 
     private EventHandler<ActionEvent> gestionnaireEvenement;
 
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     @Override
     public void start(Stage primaryStage) {
         root = new BorderPane();
 
         texteDuHaut = new Label();
-        texteDuHaut.setFont(Font.font("Tahoma",FontWeight.NORMAL, 20));
+        texteDuHaut.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         BorderPane.setAlignment(texteDuHaut, Pos.CENTER);
         texteDuBas = new Label();
 
         panneau = new Pane();
-        panneau.setPrefSize(400,200);
+        panneau.setPrefSize(400, 200);
 
         boutons = new HBox(10);
         boutons.setAlignment(Pos.CENTER);
-        boutons.setPadding(new Insets(10,5,10,5));
+        boutons.setPadding(new Insets(10, 5, 10, 5));
 
         bas = new VBox();
         bas.getChildren().addAll(boutons, texteDuBas);
@@ -60,6 +64,11 @@ public class Palette extends Application {
 
         gestionnaireEvenement = (event) -> {
             sourceOfEvent = (CustomButton) event.getSource();
+            sourceOfEvent.incrementCounter();
+            texteDuHaut.setText(sourceOfEvent.getText() + " choisi " + sourceOfEvent.getCounter() + " fois");
+            panneau.setStyle("-fx-background-color: " + sourceOfEvent.getColor());
+            texteDuBas.setText(sourceOfEvent.getText() + " est une jolie couleur!!");
+            texteDuBas.setStyle("-fx-text-fill: " + sourceOfEvent.getColor());
         };
 
         vert.setOnAction(gestionnaireEvenement);
@@ -70,13 +79,13 @@ public class Palette extends Application {
 
         root.setCenter(panneau);
         root.setTop(texteDuHaut);
-        root.setBottom(boutons);
+        root.setBottom(bas);
 
         Scene scene = new Scene(root);
 
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-
 }
+
 
