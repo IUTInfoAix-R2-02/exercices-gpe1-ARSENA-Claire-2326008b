@@ -3,6 +3,8 @@ package fr.amu.iut.exercice11;
 import javafx.application.Application;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -27,6 +29,7 @@ public class Palette extends Application {
 
     private IntegerProperty nbFois;
 
+    private StringProperty message;
     private Label texteDuHaut;
 
     private Button vert;
@@ -69,7 +72,7 @@ public class Palette extends Application {
 
     public Palette(){
         this.nbFois = new SimpleIntegerProperty(0);
-
+        this.message = new SimpleStringProperty();
     }
 
     @Override
@@ -93,14 +96,17 @@ public class Palette extends Application {
         vert = new Button("Vert");
         vert.setOnAction(buttonClickHandlerVert);
         bas.getChildren().add(vert);
+        message.set("vert");
 
         rouge = new Button("Rouge");
         rouge.setOnAction(buttonClickHandlerRouge);
         bas.getChildren().add(rouge);
+        message.set("rouge");
 
         bleu = new Button("Bleu");
         bleu.setOnAction(buttonClickHandlerBleu);
         bas.getChildren().add(bleu);
+        message.set("bleu");
 
         boutons.getChildren().addAll(vert, rouge, bleu);
 
