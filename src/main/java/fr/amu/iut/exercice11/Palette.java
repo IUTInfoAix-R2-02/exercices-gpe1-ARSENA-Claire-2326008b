@@ -1,6 +1,7 @@
 package fr.amu.iut.exercice11;
 
 import javafx.application.Application;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -20,59 +21,57 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-@SuppressWarnings("Duplicates")
 public class Palette extends Application {
 
-    private int nbVert = 0;
-    private int nbRouge = 0;
-    private int nbBleu = 0;
+    private IntegerProperty nbVert;
+    private IntegerProperty nbRouge;
+    private IntegerProperty nbBleu;
 
     private IntegerProperty nbFois;
-
     private StringProperty message;
     private Label texteDuHaut;
-
     private Button vert;
     private Button rouge;
     private Button bleu;
-
     private BorderPane root;
     private Pane panneau;
     private HBox boutons;
-
     private Label texteDuBas;
 
     // clic bouton vert ++
     private EventHandler<ActionEvent> buttonClickHandlerVert = actionEvent -> {
-        texteDuHaut.setText("vert choisi " + nbVert++ + " fois");
+        nbVert.set(nbVert.get() + 1);
         panneau.setStyle("-fx-background-color: #64b264");
         texteDuBas.setText("le vert est une jolie couleur!!");
         texteDuBas.setStyle("-fx-text-fill: #64b264;");
-        nbFois.setValue(nbVert);
     };
 
     // clic bouton rouge ++
     private EventHandler<ActionEvent> buttonClickHandlerRouge = actionEvent -> {
-        texteDuHaut.setText("rouge choisi " + nbRouge++ + " fois");
+        nbRouge.set(nbRouge.get() + 1);
         panneau.setStyle("-fx-background-color: #b70000");
         texteDuBas.setText("le rouge est une jolie couleur!!");
         texteDuBas.setStyle("-fx-text-fill: #b70000;");
-        nbFois.setValue(nbRouge);
-
     };
 
     // clic bouton bleu ++
     private EventHandler<ActionEvent> buttonClickHandlerBleu = actionEvent -> {
-        texteDuHaut.setText("bleu choisi " + nbBleu++ + " fois");
+        nbBleu.set(nbBleu.get() + 1);
         panneau.setStyle("-fx-background-color: #5d81e5");
         texteDuBas.setText("le bleu est une jolie couleur!!");
         texteDuBas.setStyle("-fx-text-fill: #5d81e5;");
-        nbFois.setValue(nbBleu);
     };
 
-    public Palette(){
+    public Palette() {
+        this.nbVert = new SimpleIntegerProperty(0);
+        this.nbRouge = new SimpleIntegerProperty(0);
+        this.nbBleu = new SimpleIntegerProperty(0);
         this.nbFois = new SimpleIntegerProperty(0);
         this.message = new SimpleStringProperty();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 
     @Override
@@ -81,6 +80,13 @@ public class Palette extends Application {
         texteDuHaut = new Label();
         texteDuHaut.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         BorderPane.setAlignment(texteDuHaut, Pos.CENTER);
+
+        // Binding de texteDuHaut à nbVert, nbRouge et nbBleu
+        texteDuHaut.textProperty().bind(
+                Bindings.createStringBinding(() ->
+                                "vert choisi " + nbVert.get() + " fois, rouge choisi " + nbRouge.get() + " fois, bleu choisi " + nbBleu.get() + " fois",
+                        nbVert, nbRouge, nbBleu)
+        );
 
         panneau = new Pane();
         panneau.setPrefSize(400, 200);
