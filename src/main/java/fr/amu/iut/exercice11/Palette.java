@@ -1,13 +1,13 @@
 package fr.amu.iut.exercice11;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -36,7 +36,7 @@ public class Palette extends Application {
     private Label texteDuBas;
 
     // clic bouton vert ++
-    private EventHandler<MouseEvent> buttonClickHandlerVert = actionEvent -> {
+    private EventHandler<ActionEvent> buttonClickHandlerVert = actionEvent -> {
         texteDuHaut.setText("vert choisi " + nbVert++ + " fois");
         panneau.setStyle("-fx-background-color: #64b264");
         texteDuBas.setText("le vert est une jolie couleur!!");
@@ -44,16 +44,15 @@ public class Palette extends Application {
     };
 
     // clic bouton rouge ++
-    private EventHandler<MouseEvent> buttonClickHandlerRouge = actionEvent -> {
+    private EventHandler<ActionEvent> buttonClickHandlerRouge = actionEvent -> {
         texteDuHaut.setText("rouge choisi " + nbRouge++ + " fois");
         panneau.setStyle("-fx-background-color: #b70000");
         texteDuBas.setText("le rouge est une jolie couleur!!");
         texteDuBas.setStyle("-fx-text-fill: #b70000;");
-
     };
 
     // clic bouton bleu ++
-    private EventHandler<MouseEvent> buttonClickHandlerBleu = actionEvent -> {
+    private EventHandler<ActionEvent> buttonClickHandlerBleu = actionEvent -> {
         texteDuHaut.setText("bleu choisi " + nbBleu++ + " fois");
         panneau.setStyle("-fx-background-color: #5d81e5");
         texteDuBas.setText("le bleu est une jolie couleur!!");
@@ -63,7 +62,6 @@ public class Palette extends Application {
     @Override
     public void start(Stage primaryStage) {
         root = new BorderPane();
-        texteDuHaut = new Label();
         texteDuHaut = new Label();
         texteDuHaut.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         BorderPane.setAlignment(texteDuHaut, Pos.CENTER);
@@ -80,18 +78,16 @@ public class Palette extends Application {
         bas.getChildren().addAll(boutons, texteDuBas);
 
         vert = new Button("Vert");
-        vert.addEventHandler(MouseEvent.MOUSE_CLICKED, buttonClickHandlerVert);
+        vert.setOnAction(buttonClickHandlerVert);
         bas.getChildren().add(vert);
 
         rouge = new Button("Rouge");
-        rouge.addEventHandler(MouseEvent.MOUSE_CLICKED, buttonClickHandlerRouge);
+        rouge.setOnAction(buttonClickHandlerRouge);
         bas.getChildren().add(rouge);
 
         bleu = new Button("Bleu");
-        bleu.addEventHandler(MouseEvent.MOUSE_CLICKED, buttonClickHandlerBleu);
+        bleu.setOnAction(buttonClickHandlerBleu);
         bas.getChildren().add(bleu);
-
-        /* VOTRE CODE ICI */
 
         boutons.getChildren().addAll(vert, rouge, bleu);
 
@@ -105,4 +101,3 @@ public class Palette extends Application {
         primaryStage.show();
     }
 }
-
