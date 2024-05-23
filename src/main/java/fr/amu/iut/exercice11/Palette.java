@@ -29,6 +29,7 @@ public class Palette extends Application {
 
     private IntegerProperty nbFois;
     private StringProperty message;
+    private StringProperty couleurPanneau;
     private Label texteDuHaut;
     private Button vert;
     private Button rouge;
@@ -41,7 +42,7 @@ public class Palette extends Application {
     // clic bouton vert ++
     private EventHandler<ActionEvent> buttonClickHandlerVert = actionEvent -> {
         nbVert.set(nbVert.get() + 1);
-        panneau.setStyle("-fx-background-color: #64b264");
+        couleurPanneau.set("#64b264");
         texteDuBas.setText("le vert est une jolie couleur!!");
         texteDuBas.setStyle("-fx-text-fill: #64b264;");
     };
@@ -49,7 +50,7 @@ public class Palette extends Application {
     // clic bouton rouge ++
     private EventHandler<ActionEvent> buttonClickHandlerRouge = actionEvent -> {
         nbRouge.set(nbRouge.get() + 1);
-        panneau.setStyle("-fx-background-color: #b70000");
+        couleurPanneau.set("#b70000");
         texteDuBas.setText("le rouge est une jolie couleur!!");
         texteDuBas.setStyle("-fx-text-fill: #b70000;");
     };
@@ -57,7 +58,7 @@ public class Palette extends Application {
     // clic bouton bleu ++
     private EventHandler<ActionEvent> buttonClickHandlerBleu = actionEvent -> {
         nbBleu.set(nbBleu.get() + 1);
-        panneau.setStyle("-fx-background-color: #5d81e5");
+        couleurPanneau.set("#5d81e5");
         texteDuBas.setText("le bleu est une jolie couleur!!");
         texteDuBas.setStyle("-fx-text-fill: #5d81e5;");
     };
@@ -68,6 +69,7 @@ public class Palette extends Application {
         this.nbBleu = new SimpleIntegerProperty(0);
         this.nbFois = new SimpleIntegerProperty(0);
         this.message = new SimpleStringProperty();
+        this.couleurPanneau = new SimpleStringProperty("#000000");
     }
 
     public static void main(String[] args) {
@@ -90,6 +92,9 @@ public class Palette extends Application {
 
         panneau = new Pane();
         panneau.setPrefSize(400, 200);
+
+        // Binding de la propriété style du panneau à couleurPanneau
+        panneau.styleProperty().bind(Bindings.concat("-fx-background-color: ", couleurPanneau));
 
         VBox bas = new VBox();
         boutons = new HBox(10);
