@@ -5,7 +5,24 @@ import javafx.scene.control.Button;
 
 public class CustomButton extends Button {
 
+    public String getCouleur() {
+        return couleur;
+    }
+
     private String couleur;
+
+    public int getNbClics() {
+        return nbClics.get();
+    }
+
+    public void setNbClics(int nbClics) {
+        this.nbClics.set(nbClics);
+    }
+
+    public IntegerProperty nbClicsProperty() {
+        return nbClics;
+    }
+
     private IntegerProperty nbClics;
 
     public CustomButton(String texte, String couleur) {
