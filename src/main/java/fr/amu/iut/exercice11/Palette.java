@@ -1,6 +1,8 @@
 package fr.amu.iut.exercice11;
 
 import javafx.application.Application;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -23,6 +25,8 @@ public class Palette extends Application {
     private int nbRouge = 0;
     private int nbBleu = 0;
 
+    private IntegerProperty nbFois;
+
     private Label texteDuHaut;
 
     private Button vert;
@@ -41,6 +45,7 @@ public class Palette extends Application {
         panneau.setStyle("-fx-background-color: #64b264");
         texteDuBas.setText("le vert est une jolie couleur!!");
         texteDuBas.setStyle("-fx-text-fill: #64b264;");
+        nbFois.setValue(nbVert);
     };
 
     // clic bouton rouge ++
@@ -49,6 +54,8 @@ public class Palette extends Application {
         panneau.setStyle("-fx-background-color: #b70000");
         texteDuBas.setText("le rouge est une jolie couleur!!");
         texteDuBas.setStyle("-fx-text-fill: #b70000;");
+        nbFois.setValue(nbRouge);
+
     };
 
     // clic bouton bleu ++
@@ -57,7 +64,13 @@ public class Palette extends Application {
         panneau.setStyle("-fx-background-color: #5d81e5");
         texteDuBas.setText("le bleu est une jolie couleur!!");
         texteDuBas.setStyle("-fx-text-fill: #5d81e5;");
+        nbFois.setValue(nbBleu);
     };
+
+    public Palette(){
+        this.nbFois = new SimpleIntegerProperty(0);
+
+    }
 
     @Override
     public void start(Stage primaryStage) {
